@@ -2,14 +2,14 @@
 
 [ext_resource path="res://characters/Character.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=7]
 
 resource_name = "SETUP"
 length = 0.01
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Body:transform")
+tracks/0/path = NodePath("Pivot/Body:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -18,44 +18,45 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=8]
 
 resource_name = "idle"
 length = 0.01
 loop = false
-step = 0.05
+step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Body:transform")
+tracks/0/path = NodePath("Pivot/Body:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0.222165 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=9]
 
+resource_name = "walk"
 length = 0.4
 loop = true
-step = 0.05
+step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Body:transform")
+tracks/0/path = NodePath("Pivot/Body:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 0.222165, 3.59237 ),
+"transitions": PoolRealArray( 4.31705, 0.372695 ),
 "update": 0,
-"values": [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.12815e-008, -0.486864 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.316506, 0 ) ]
 }
 
 [sub_resource type="SpatialMaterial" id=4]
@@ -126,7 +127,6 @@ height = 1.0
 
 [node name="Character" type="KinematicBody"]
 
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
@@ -148,9 +148,9 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/SETUP = SubResource( 1 )
-anims/idle = SubResource( 2 )
-anims/walk = SubResource( 3 )
+anims/SETUP = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/walk = SubResource( 9 )
 blend_times = [  ]
 
 [node name="Tween" type="Tween" parent="." index="1"]
@@ -166,6 +166,7 @@ playback/speed = 1.0
 
 [node name="Body" type="MeshInstance" parent="Pivot" index="0"]
 
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -182,7 +183,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
 
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 6 )
 disabled = false
+_sections_unfolded = [ "Transform" ]
 
 

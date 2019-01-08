@@ -14,11 +14,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.47499, 1.5931, -5.18242 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 1.46805, 10.2648 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46805, 10.2648 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="2"]
 
-transform = Transform( 0.86674, 0.298861, -0.399303, 0, 0.800593, 0.599209, 0.498759, -0.519358, 0.693906, -10.0736, 16.6297, 3.88793 )
+transform = Transform( 0.86674, 0.298861, -0.399303, 0.368946, 0.15454, 0.916513, 0.335618, -0.9417, 0.023682, -10.0736, 16.6297, 9.19936 )
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
 light_energy = 0.8

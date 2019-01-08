@@ -65,7 +65,9 @@ subdivide_depth = 0
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Rock" type="Spatial"]
+[node name="Rock" type="Spatial" groups=[
+"environment",
+]]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
@@ -84,7 +86,9 @@ skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance" index="0"]
+[node name="StaticBody" type="StaticBody" parent="MeshInstance" index="0" groups=[
+"environment",
+]]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -117,7 +121,9 @@ skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance2" index="0"]
+[node name="StaticBody" type="StaticBody" parent="MeshInstance2" index="0" groups=[
+"environment",
+]]
 
 input_ray_pickable = true
 input_capture_on_drag = false

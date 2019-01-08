@@ -68,7 +68,7 @@ points = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 40, 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 0 )
+transform = Transform( 70, 0, 0, 0, 1, 0, 0, 0, 70, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
