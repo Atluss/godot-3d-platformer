@@ -1,5 +1,11 @@
 extends "res://characters/Character.gd"
 
+func _input(event):
+	if event.is_action_pressed("action_jump"):
+		if not state in [IDLE, MOVE]:
+			return
+		_change_state(JUMP)
+
 func _physics_process(delta):
 	input_direction = Vector3()
 	
