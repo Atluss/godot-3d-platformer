@@ -10,11 +10,23 @@
 
 [node name="Rock" parent="TestGround" index="1" instance=ExtResource( 2 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.47499, 1.5931, -5.18242 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.47499, 3.60346, -5.18242 )
+
+[node name="Rock2" parent="TestGround" index="2" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5158, 3.60346, 15.2496 )
+
+[node name="Rock3" parent="TestGround" index="3" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.2645, 3.60346, 27.0206 )
+
+[node name="Rock4" parent="TestGround" index="4" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85754, 3.60346, 38.3126 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46805, 10.2648 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.68435, 10.2648 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="2"]
 

@@ -23,7 +23,7 @@ params_point_size = 1.0
 params_billboard_mode = 0
 params_grow = false
 params_use_alpha_scissor = false
-albedo_color = Color( 0.0376892, 0.964844, 0.0739062, 1 )
+albedo_color = Color( 0.490766, 0.507813, 0.485992, 1 )
 metallic = 0.0
 metallic_specular = 0.5
 metallic_texture_channel = 0
@@ -52,23 +52,24 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="PlaneMesh" id=2]
+[sub_resource type="CubeMesh" id=2]
 
 material = SubResource( 1 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector2( 2, 2 )
+size = Vector3( 2, 2, 2 )
 subdivide_width = 0
+subdivide_height = 0
 subdivide_depth = 0
 
 [sub_resource type="ConvexPolygonShape" id=3]
 
-points = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
 [node name="TestGround" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 70, 0, 0, 0, 1, 0, 0, 0, 70, 0, 0, 0 )
+transform = Transform( 60, 0, 0, 0, 2, 0, 0, 0, 60, 0, 0, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
