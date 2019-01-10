@@ -88,7 +88,7 @@ func _physics_process(delta):
 		jump(delta)
 	
 	velocity.y += GRAVITY * delta
-	move_and_slide(velocity, Vector3(0, 1, 0))
+	move_and_slide(velocity, Vector3(1, 1, 1))
 
 func update_direction():
 	if input_direction:
