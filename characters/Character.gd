@@ -88,6 +88,10 @@ func _physics_process(delta):
 		jump(delta)
 	
 	velocity.y += GRAVITY * delta
+	if state == IN_AIR:
+		velocity.y += GRAVITY * 2 * delta
+	else:
+		velocity.y += GRAVITY * delta
 	move_and_slide(velocity, Vector3(0, 1, 0))
 
 func update_direction():
@@ -114,6 +118,9 @@ func move(delta):
 	return get_slide_collision(slide_count - 1) if slide_count else null
 	
 func jump(delta):
+	if state == JUMP:
+		air_velocity = velocity
+	
 	var AIR_ACCELERATION = 1
 	var AIR_DECCELERATION = 2
 	var AIR_STEERING_POWER = 3
@@ -125,12 +132,15 @@ func jump(delta):
 	air_speed = clamp(air_speed, 0.0, max_air_speed)
 	
 	var target_velocity = air_speed * input_direction.normalized()
-	var steering_velocity = (target_velocity - air_velocity).normalized() * AIR_STEERING_POWER
-#	air_velocity += steering_velocity
-	velocity.x += steering_velocity.x
-	velocity.z += steering_velocity.z
+	var steering_velocity = (target_velocity - air_velocity).normalized()
+	air_velocity += steering_velocity
+	velocity.x = air_velocity.x
+	velocity.z = air_velocity.z
 	
-	if is_on_floor():
+#	velocity.x = clamp(velocity.x, 0.0, MAX_RUN_SPEED)
+#	velocity.z = clamp(velocity.z, 0.0, MAX_RUN_SPEED)
+	
+	if is_on_floor() and state == JUMP:
 		velocity.y = 10
 		_change_state(IN_AIR)
 	
