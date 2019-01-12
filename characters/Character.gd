@@ -7,7 +7,7 @@ var input_direction = Vector3()
 var last_move_direction = Vector3()
 
 const MAX_WALK_SPEED = 400
-const MAX_RUN_SPEED = 700
+const MAX_RUN_SPEED = 1300
 
 const BUMP_DURATION = 0.2
 const BUMP_DISTANCE = 4
@@ -20,10 +20,10 @@ const MAX_JUMP_HEIGHT = 5
 const GRAVITY = -9.8
 
 var height = 0.0 setget set_height
-var max_air_speed = 0.0
+var max_air_speed = 1300.0
 var air_speed = 0.0
 var air_velocity = Vector3()
-var air_steering = Vector3()
+var steering_velocity = Vector3()
 
 var speed = 0.0
 var max_speed = 0.0
@@ -33,6 +33,10 @@ var velocity = Vector3()
 var state = null
 
 enum STATE { IDLE, MOVE, BUMP, JUMP, IN_AIR }
+
+var double_jump_state = true
+
+var delta_temp = 0.0
 
 func _ready():
 	_change_state(IDLE)
@@ -54,8 +58,15 @@ func _change_state(new_state):
 			$Tween.start()
 		JUMP:
 			air_speed = speed
-			max_air_speed = max_speed
+			max_air_speed = speed
 			air_velocity = velocity
+			if double_jump_state == false:
+				air_velocity = Vector3()
+				velocity = Vector3()
+				steering_velocity = Vector3()
+				velocity = input_direction.normalized() * air_speed * delta_temp
+				air_velocity = velocity
+				
 			$AnimationPlayer.play('idle')
 			
 #			$Tween.interpolate_method(self, '_animate_jump_height', 0, 1, JUMP_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -66,6 +77,9 @@ func _change_state(new_state):
 	
 
 func _physics_process(delta):
+	
+	delta_temp = delta
+	
 	update_direction()
 	
 	if state == IDLE and input_direction:
@@ -84,19 +98,32 @@ func _physics_process(delta):
 		jump(delta)
 	elif state == IN_AIR and is_on_floor():
 		_change_state(IDLE)
+		air_velocity = Vector3()
+		velocity = Vector3()
+		steering_velocity = Vector3()
+		double_jump_state = true
 	elif state == IN_AIR:
 		jump(delta)
+		velocity.x = air_velocity.x
+		velocity.z = air_velocity.z
 	
-	velocity.y += GRAVITY * delta
-	move_and_slide(velocity, Vector3(1, 1, 1))
+	if not is_on_floor():
+		_change_state(IN_AIR)
+	
+	if state == IN_AIR:
+		velocity.y += GRAVITY * 4.7* delta
+	else:
+		velocity.y += GRAVITY * delta
+	
+
+	move_and_slide(velocity, Vector3(0, 1, 0))
+
 
 func update_direction():
 	if input_direction:
 		last_move_direction = input_direction
 
 func move(delta):
-	
-	var direction = Vector3()
 	
 	if input_direction:
 		if speed != max_speed:
@@ -105,34 +132,37 @@ func move(delta):
 		speed = 0.0
 	emit_signal('speed_updated', speed)
 	
-	direction = input_direction.normalized() * speed * delta
-	
-	velocity.x = direction.x
-	velocity.z = direction.z
+	velocity = input_direction.normalized() * speed * delta
 	
 	var slide_count = get_slide_count()
 	return get_slide_collision(slide_count - 1) if slide_count else null
 	
 func jump(delta):
-	var AIR_ACCELERATION = 1
-	var AIR_DECCELERATION = 2
-	var AIR_STEERING_POWER = 3
-	if input_direction:
-		air_speed += AIR_ACCELERATION * delta
-	else:
-		air_speed -= AIR_DECCELERATION * delta
-		
-	air_speed = clamp(air_speed, 0.0, max_air_speed)
-	
-	var target_velocity = air_speed * input_direction.normalized()
-	var steering_velocity = (target_velocity - air_velocity).normalized() * AIR_STEERING_POWER
-#	air_velocity += steering_velocity
-	velocity.x += steering_velocity.x
-	velocity.z += steering_velocity.z
-	
-	if is_on_floor():
-		velocity.y = 10
+
+	if state == JUMP:	
+		steering_velocity = Vector3()
+#		velocity = Vector3(0, 20, 0)
+		velocity.y = 20
 		_change_state(IN_AIR)
+		if air_speed == 0:
+			max_air_speed = 5000
+	
+	var AIR_ACCELERATION = 1000
+	var AIR_DECCELERATION = 2000
+	var AIR_STEERING_POWER = 20
+
+	if input_direction:
+		air_speed += AIR_ACCELERATION
+	else:
+		air_speed -= AIR_DECCELERATION
+
+	air_speed = clamp(air_speed, 0.0, max_air_speed)
+
+	var target_velocity = air_speed * input_direction.normalized()
+	
+	steering_velocity = (target_velocity - air_velocity).normalized() * AIR_STEERING_POWER
+
+	air_velocity += steering_velocity * delta
 	
 	
 func set_height(value):

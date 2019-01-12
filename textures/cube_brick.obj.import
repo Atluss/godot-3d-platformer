@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cube_brick.obj-b0053dc00ad9dac89b1d70ca101ed0ae.mesh"
+
+[deps]
+
+files=[ "res://.import/cube_brick.obj-b0053dc00ad9dac89b1d70ca101ed0ae.mesh" ]
+
+source_file="res://textures/cube_brick.obj"
+dest_files=[ "res://.import/cube_brick.obj-b0053dc00ad9dac89b1d70ca101ed0ae.mesh", "res://.import/cube_brick.obj-b0053dc00ad9dac89b1d70ca101ed0ae.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

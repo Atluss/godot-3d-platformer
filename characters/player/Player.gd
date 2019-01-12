@@ -1,9 +1,22 @@
 extends "res://characters/Character.gd"
 
+var camera
+
+func _ready():
+	
+	camera = $Camera.get_global_transform()
+
 func _input(event):
 	if event.is_action_pressed("action_jump"):
-		if not state in [IDLE, MOVE]:
+		if not state in [IDLE, MOVE, IN_AIR]:
 			return
+			
+		if state == IN_AIR and double_jump_state == false:
+			return
+		
+		if state == IN_AIR and double_jump_state == true:
+			double_jump_state = false
+		
 		_change_state(JUMP)
 
 func _physics_process(delta):
