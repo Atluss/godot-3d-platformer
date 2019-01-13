@@ -115,7 +115,6 @@ func _physics_process(delta):
 	else:
 		velocity.y += GRAVITY * delta
 	
-
 	move_and_slide(velocity, Vector3(0, 1, 0))
 
 
@@ -149,7 +148,7 @@ func jump(delta):
 	
 	var AIR_ACCELERATION = 1000
 	var AIR_DECCELERATION = 2000
-	var AIR_STEERING_POWER = 20
+	var AIR_STEERING_POWER = 15
 
 	if input_direction:
 		air_speed += AIR_ACCELERATION
