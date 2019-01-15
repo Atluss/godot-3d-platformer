@@ -1,12 +1,13 @@
 extends Spatial
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 var ACCSELERATION = 1
 var heig
 var DE_ACCSELERATION = 30
 var velocity = Vector3()
+
+export var motion = Vector3()
+export var cycle = 1.0
+var accum = 0.0
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -15,6 +16,13 @@ func _ready():
 
 func _physics_process(delta):
 	
-	translation.y += ACCSELERATION * delta
+	var velocity = Vector3()
 	
-	pass
+#	global_translate(Vector3(0,delta,0))
+
+	accum += delta * (1.0 / cycle) * PI * 2.0
+	accum = fmod(accum, PI * 2.0)
+	var d = sin(accum)
+	var xf = Transform()
+	xf[3]= motion * d 
+	transform = transform * xf

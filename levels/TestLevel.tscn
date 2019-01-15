@@ -68,12 +68,12 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="Wall3" parent="TestGround" index="14" instance=ExtResource( 3 )]
 
-transform = Transform( -1.62921e-007, 0, 1, 0, 1, 0, -1, 0, -1.62921e-007, -62, 12.0206, 0 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -62, 12.0206, 0 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Wall4" parent="TestGround" index="15" instance=ExtResource( 3 )]
 
-transform = Transform( -1.62921e-007, 0, 1, 0, 1, 0, -1, 0, -1.62921e-007, 62, 12.0206, 0 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 62, 12.0206, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="BrickCube" parent="TestGround" index="16" instance=ExtResource( 4 )]
@@ -105,11 +105,19 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="MovePlatform" parent="TestGround" index="22" instance=ExtResource( 6 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.9717, 2.54881, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.9717, 2.31545, 0 )
+motion = Vector3( 0, 0.1, 0 )
+cycle = 4.0
+
+[node name="MovePlatform2" parent="TestGround" index="23" instance=ExtResource( 6 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.9717, 11.7688, -7.00076 )
+motion = Vector3( 0, 0.1, 0 )
+cycle = 4.0
 
 [node name="Player" parent="." index="1" instance=ExtResource( 7 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5758, 4.6843, 16.2648 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51.8598, 4.6843, 9.10647 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="2"]
 

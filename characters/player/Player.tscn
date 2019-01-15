@@ -9,7 +9,7 @@ script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="." index="4"]
 
-transform = Transform( 1, 0, 0, 0, 0.790466, 0.612507, 0, -0.612507, 0.790466, 0, 2.85654, 5.7134 )
+transform = Transform( 1, 0, 0, 0, 0.859297, 0.511479, 0, -0.511479, 0.859297, 0, 3.98749, 6.82114 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null

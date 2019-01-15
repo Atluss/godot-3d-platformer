@@ -29,7 +29,6 @@ var speed = 0.0
 var max_speed = 0.0
 
 var velocity = Vector3()
-
 var state = null
 
 enum STATE { IDLE, MOVE, BUMP, JUMP, IN_AIR }
@@ -37,6 +36,8 @@ enum STATE { IDLE, MOVE, BUMP, JUMP, IN_AIR }
 var double_jump_state = true
 
 var delta_temp = 0.0
+
+var gravityCurForce = 0.0
 
 func _ready():
 	_change_state(IDLE)
@@ -111,9 +112,11 @@ func _physics_process(delta):
 		_change_state(IN_AIR)
 	
 	if state == IN_AIR:
-		velocity.y += GRAVITY * 4.7* delta
+		gravityCurForce = GRAVITY * 4.7* delta
 	else:
-		velocity.y += GRAVITY * delta
+		gravityCurForce= GRAVITY * delta
+	
+	velocity.y += gravityCurForce
 	
 	move_and_slide(velocity, Vector3(0, 1, 0))
 
