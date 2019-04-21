@@ -1,10 +1,5 @@
 extends Spatial
 
-var ACCSELERATION = 1
-var heig
-var DE_ACCSELERATION = 30
-var velocity = Vector3()
-
 export var motion = Vector3()
 export var cycle = 1.0
 var accum = 0.0
@@ -15,8 +10,6 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	
-	var velocity = Vector3()
 	
 #	global_translate(Vector3(0,delta,0))
 

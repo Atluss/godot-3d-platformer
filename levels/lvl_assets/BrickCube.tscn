@@ -60,7 +60,7 @@ _sections_unfolded = [ "Albedo" ]
 
 extents = Vector3( 1, 1, 1 )
 
-[node name="BrickCube" type="Spatial" index="0"]
+[node name="BrickCube" type="Spatial"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -70,7 +70,7 @@ layers = 1
 material_override = null
 cast_shadow = 1
 extra_cull_margin = 0.0
-use_in_baked_light = false
+use_in_baked_light = true
 lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
@@ -78,7 +78,7 @@ lod_max_hysteresis = 0.0
 mesh = ExtResource( 1 )
 skeleton = NodePath("..")
 material/0 = SubResource( 1 )
-_sections_unfolded = [ "Transform", "material" ]
+_sections_unfolded = [ "Geometry", "Transform", "material" ]
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance" index="0" groups=[
 "environment",

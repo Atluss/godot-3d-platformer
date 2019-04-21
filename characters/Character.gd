@@ -31,7 +31,7 @@ var max_speed = 0.0
 var velocity = Vector3()
 var state = null
 
-enum STATE { IDLE, MOVE, BUMP, JUMP, IN_AIR }
+enum { IDLE, MOVE, BUMP, JUMP, IN_AIR }
 
 var double_jump_state = true
 
@@ -54,7 +54,8 @@ func _change_state(new_state):
 		BUMP:
 			$AnimationPlayer.stop()
 			
-			$Tween.interpolate_property(self, 'translation', translation, translation + BUMP_DISTANCE * -last_move_direction, BUMP_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			$Tween.interpolate_property(self, 'translation', translation, translation + BUMP_DISTANCE * -last_move_direction, 
+			BUMP_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.interpolate_method(self, 'animate_bump_height', 0, MAX_BUMP_HEIGHT, BUMP_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()
 		JUMP:
